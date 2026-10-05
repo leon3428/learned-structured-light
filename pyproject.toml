@@ -1,0 +1,69 @@
+[project]
+name = "learned-structured-light"
+version = "1.0.0"
+description = "Code for 'End-to-End Learning of Projection Patterns for Structured Light Systems'"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Leon Stjepan Uroić", email = "leon-stjepan.uroic@fer.hr" },
+    { name = "Damir Seršić", email = "damir.sersic@fer.hr" },
+]
+requires-python = ">=3.12"
+dependencies = [
+    "huggingface-hub>=0.30",
+    "matplotlib>=3.10",
+    "numpy>=2.0",
+    "opencv-contrib-python-headless>=4.13.0.92",
+    "pillow>=11.0",
+    "pyarrow>=17.0",
+    "scipy>=1.15",
+    "torch>=2.7",
+    "tqdm>=4.67",
+    "trimesh>=4.7",
+]
+
+[project.optional-dependencies]
+wandb = ["wandb>=0.20"]
+# Only needed to regenerate the dataset from ABC meshes (also requires the Mitsuba fork).
+generation = [
+    "beautifulsoup4>=4.13",
+    "h5py>=3.13",
+    "py7zr>=1.0",
+    "requests>=2.32",
+    "trimesh[easy]>=4.7",
+]
+
+[project.scripts]
+sl-download = "learned_sl.data:download_main"
+sl-train = "learned_sl.train:main"
+sl-evaluate = "learned_sl.evaluate:main"
+sl-baseline = "learned_sl.baselines:main"
+sl-patterns = "learned_sl.patterns:main"
+sl-render-meshes = "learned_sl.figures.meshes:main"
+sl-plot-metrics = "learned_sl.figures.plot_metrics:main"
+sl-abc-urls = "learned_sl.generation.abc:list_urls_main"
+sl-abc-prepare = "learned_sl.generation.abc:prepare_main"
+sl-generate = "learned_sl.generation.render:generate_main"
+sl-generate-preview = "learned_sl.generation.render:preview_main"
+sl-split = "learned_sl.generation.render:split_main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/learned_sl"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4",
+    "ruff>=0.11",
+]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100

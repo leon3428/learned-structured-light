@@ -1,0 +1,14 @@
+# Table 2: learned patterns, 1 pattern, diffuse objects
+# Hyperparameters of the original run, recovered from its logged code and config.
+name = "diffuse_learned_1"
+subset = "diffuse"
+num_patterns = 1
+patterns = "learned"
+epochs = 80
+batch_size = 16  # total over all GPUs (the paper used 2 GPUs x 8)
+decoder_lr = 1e-5
+pattern_lr = 2e-4
+weight_decay = 1e-6
+ssim_weight = 0.74
+variance_weight = 1e-3
+base_channels = 32

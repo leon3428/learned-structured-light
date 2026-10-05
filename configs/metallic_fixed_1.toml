@@ -1,0 +1,14 @@
+# Table 3: fixed patterns, 1 pattern, metallic objects
+# Hyperparameters of the original run, recovered from its logged code and config.
+# Fixed-pattern runs used a lower learning rate and gradient clipping.
+name = "metallic_fixed_1"
+subset = "metalic"
+num_patterns = 1
+patterns = "fixed"
+epochs = 80
+batch_size = 16  # total over all GPUs (the paper used 2 GPUs x 8)
+decoder_lr = 5e-6
+weight_decay = 1e-6
+ssim_weight = 0.74
+grad_clip_norm = 1.0
+base_channels = 32

@@ -1,0 +1,3 @@
+[submodule "external/mitsuba"]
+	path = external/mitsuba
+	url = https://github.com/leon3428/mitsuba3.git
